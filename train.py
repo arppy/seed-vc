@@ -267,7 +267,7 @@ class Trainer:
 
         # extract S_alt (perturbed speech tokens)
         S_ori = self.semantic_fn(waves_16k)
-        S_alt = self.semantic_fn(converted_waves_16k)
+        S_alt = self.semantic_fn(converted_waves_16k)  #<---- ez helyett lehetne beolvasni a dysarthriás párt.
 
         if self.f0_condition:
             F0_ori = self.rmvpe.infer_from_audio_batch(waves_16k)
