@@ -1,6 +1,7 @@
 import os
 
 import numpy as np
+from pathlib import Path
 
 os.environ['HF_HUB_CACHE'] = './checkpoints/hf_cache'
 import shutil
@@ -294,7 +295,8 @@ def main(args):
         median_log_f0_ori = torch.median(voiced_log_f0_ori)
     else:
         F0_ori = None
-    for source in args.sources.iterdir():
+    sources_path = Path(args.sources)
+    for source in sources_path.iterdir():
         source_audio = librosa.load(source, sr=mel_fn_args['sampling_rate'])[0]
         source_audio = torch.tensor(source_audio).unsqueeze(0).float().to(device)
         time_vc_start = time.time()
